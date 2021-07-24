@@ -1,11 +1,13 @@
 import React from 'react';
 
+import Dashboard from 'components/Dashboard';
+
 import { AppContainer } from './styles';
 
 const App = () => {
   return (
     <AppContainer>
-      Test
+      <Dashboard />
     </AppContainer>
   );
 }

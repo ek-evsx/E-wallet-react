@@ -8,16 +8,13 @@ export const Input = styled.input<{
   border-radius: 15px;
   margin: 10px;
   border: 1px solid var(--light-gray);
+  padding-left: 10px;
 
   :focus {
     border: 2px solid var(--aqua);
     outline: none;
   }
-
-  ::placeholder {
-    padding-left: 10px;
-  }
-
+  
   ${props => props.error && `
     border-color: var(--red);
   `}

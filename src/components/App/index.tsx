@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Dashboard from 'components/Dashboard';
+import { AppRouter } from 'routes';
 
 import { AppContainer } from './styles';
 
 const App = () => {
   return (
     <AppContainer>
-      <Dashboard />
+      <AppRouter />
     </AppContainer>
   );
 }

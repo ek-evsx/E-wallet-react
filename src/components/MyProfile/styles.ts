@@ -49,3 +49,13 @@ export const ProfileInfoField = styled.p`
 export const ViewProfileContainer = styled.div`
   margin: 10px 0;
 `;
+
+export const ProfileInfoFieldLabel = styled.span`
+  font-size: 15px;
+  font-weight: 600;
+`;
+
+export const ProfileInfoFieldValue = styled.span`
+  font-size: 14px;
+  margin-left: 5px;
+`;

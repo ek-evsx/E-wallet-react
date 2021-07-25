@@ -37,4 +37,27 @@ export const ButtonUI = styled.button<{
       }
     `
   }
+
+  ${(props) => props.color === BUTTON_COLOR.SUCCESS && 
+    `
+      background-color: var(--light-aqua);
+
+      :hover {
+        background-color: var(--aqua);
+      }
+    
+      :active {
+        background-color: var(--aqua-lighter);
+      }
+    `
+  }
+
+  ${(props) => props.size === BUTTON_SIZE.LARGE && 
+    `
+      min-width: 220px;
+      height: 50px;
+      font-size: 18px;
+      border-radius: 30px;
+    `
+  }
 `;

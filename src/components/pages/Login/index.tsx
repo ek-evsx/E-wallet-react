@@ -2,12 +2,17 @@ import React from 'react';
 
 import LoginForm from 'components/LoginForm';
 
-import { LoginContainer } from './styles';
+import logo from 'static/images/logo.svg';
+
+import { LoginContainer, Logo, LoginFormContainer } from './styles';
 
 const LoginPage = () => {
   return (
     <LoginContainer>
-      <LoginForm />
+      <Logo alt={'logo'} src={logo} />
+      <LoginFormContainer>
+        <LoginForm />
+      </LoginFormContainer>
     </LoginContainer>
   );
 };

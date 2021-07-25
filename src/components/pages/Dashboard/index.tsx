@@ -2,6 +2,7 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
 import MyProfile from 'components/MyProfile';
+import Loader from 'components/Loader';
 
 import { getParsedJWT } from 'utils/token';
 
@@ -22,12 +23,13 @@ query($id: String!) {
 const Dashboard = () => {
   const parsedToken = getParsedJWT();
 
-  const { data } = useQuery(GET_ME, {
+  const { data, loading } = useQuery(GET_ME, {
     variables: { id: parsedToken?.userId || '' }
   });
 
   return (
     <DashboardContainer>
+      <Loader isFullScreen loading={loading} />
       <MyProfile data={data?.user} />
     </DashboardContainer>
   );

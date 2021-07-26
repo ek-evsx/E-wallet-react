@@ -9,6 +9,7 @@ import { ROUTES } from 'utils/constants';
 
 import LoginPage from 'components/pages/Login';
 import Dashboard from 'components/pages/Dashboard';
+import NotFoundPage from 'components/pages/NotFound';
 import PrivateRoute from 'components/PrivateRoute';
 
 const publicRoutes = [
@@ -34,6 +35,7 @@ export const AppRouter = () => {
         <Switch>
           {publicRoutesComponents}
           {privateRoutesComponents}
+          <Route component={NotFoundPage} />
         </Switch>
     </Router>
   );

@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { BUTTON_SIZE, BUTTON_COLOR } from 'utils/constants';
 
 export const ButtonUI = styled.button<{
   size?: BUTTON_SIZE,
   color?: BUTTON_COLOR,
+  isLink?: boolean;
+  as?: string | React.ReactElement;
 }>`
   border-radius: 20px;
   color: var(--white);
@@ -15,7 +18,8 @@ export const ButtonUI = styled.button<{
   border: none;
   outline: none;
   letter-spacing: 2px;
-  
+  text-decoration: none;
+
   :hover {
     background-color: var(--purple);
   }
@@ -60,4 +64,11 @@ export const ButtonUI = styled.button<{
       border-radius: 30px;
     `
   }
+
+  ${(props) => props.isLink && `
+    display: inline-block;
+    line-height: 2.5;
+  `}
 `;
+
+export const ButtonLink = ButtonUI.withComponent(Link);

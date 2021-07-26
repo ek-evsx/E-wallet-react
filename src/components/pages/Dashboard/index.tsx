@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { toast } from 'react-toast'
 
 import MyProfile from 'components/MyProfile';
 import Loader from 'components/Loader';
@@ -24,7 +25,8 @@ const Dashboard = () => {
   const parsedToken = getParsedJWT();
 
   const { data, loading } = useQuery(GET_ME, {
-    variables: { id: parsedToken?.userId || '' }
+    variables: { id: parsedToken?.userId || '' },
+    onError:  (error) => toast.error(`Error! Message: ${error}`),
   });
 
   return (

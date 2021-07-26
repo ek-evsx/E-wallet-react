@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { gql, useMutation } from '@apollo/client';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toast'
 
 import Button from 'components/UI/Button';
 import { BUTTON_SIZE, BUTTON_COLOR, BUTTON_TYPE, ROUTES } from 'utils/constants';
@@ -23,7 +24,9 @@ const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
-  const onSubmit = (data: any) => login({ variables: data });
+  const onSubmit = (data: any) => 
+    login({ variables: data })
+      .catch((error) => toast.error(`Error! Message: ${error}`));
 
   useEffect(() => {
     if (data?.login?.accessToken) {

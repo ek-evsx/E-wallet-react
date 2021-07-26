@@ -9,6 +9,7 @@ import {
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/link-error';
+import { ToastContainer } from 'react-toast'
 
 import config from 'config';
 import { getParsedTokenData } from 'utils/token';
@@ -22,7 +23,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const tokenData = getParsedTokenData();
-  // return the headers to the context so httpLink can read them
+
   return {
     headers: {
       ...headers,
@@ -33,11 +34,11 @@ const authLink = setContext((_, { headers }) => {
 
 const errorLink: any = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-      graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(
-              `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          )
-      );
+      graphQLErrors.forEach(({ message, locations, path }) => {
+        console.log(
+          `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+        );
+      });
   }
 
   if (networkError) {
@@ -59,6 +60,7 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <GlobalStyle />
       <App />
+      <ToastContainer position={'top-right'} />
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

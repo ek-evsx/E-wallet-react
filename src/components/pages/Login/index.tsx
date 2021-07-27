@@ -2,8 +2,6 @@ import React from 'react';
 
 import LoginForm from 'components/LoginForm';
 
-import withBaseLayout from 'hocs/withBaseLayout';
-
 import logo from 'static/images/logo.svg';
 
 import { LoginContainer, Logo, LoginFormContainer } from './styles';
@@ -20,4 +18,4 @@ const LoginPage = () => {
   );
 };
 
-export default withBaseLayout(LoginPage);
+export default LoginPage;

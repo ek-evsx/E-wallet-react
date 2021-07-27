@@ -2,6 +2,8 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { toast } from 'react-toast'
 
+import withBaseLayout from 'hocs/withBaseLayout';
+
 import MyProfile from 'components/MyProfile';
 import Loader from 'components/Loader';
 
@@ -37,4 +39,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withBaseLayout(Dashboard);

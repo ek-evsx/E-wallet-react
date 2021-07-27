@@ -43,3 +43,5 @@ export const getParsedTokenData = () => {
 };
 
 export const saveTokenData = (token: IToken) => localStorage.setItem('token', JSON.stringify(token));
+
+export const clearTokenData = () => localStorage.removeItem('token');

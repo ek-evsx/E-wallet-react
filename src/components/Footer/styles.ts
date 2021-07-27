@@ -8,8 +8,9 @@ export const Footer = styled.footer`
   justify-content: flex-end;
   background-color: var(--white);
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  z-index: 9999;
 `;
 
 export const Copyright = styled.p`

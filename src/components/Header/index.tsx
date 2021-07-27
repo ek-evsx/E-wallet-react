@@ -7,7 +7,8 @@ import { Header, LogoutButtonContainer, SidebarButtonContainer } from './styles'
 const AppHeader = () => {
   return (
     <Header>
-      <SidebarButtonContainer></SidebarButtonContainer>
+      <SidebarButtonContainer>
+      </SidebarButtonContainer>
       <LogoutButtonContainer>
         <LogoutButton />
       </LogoutButtonContainer>

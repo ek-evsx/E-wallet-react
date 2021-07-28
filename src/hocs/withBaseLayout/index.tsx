@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
 
@@ -16,7 +15,6 @@ const withBaseLayout = <P extends object>(Component: React.ComponentType<P>) => 
           <Component {...props} />
         </ComponentContainer>
       </ChildContainer>
-      <Footer/>
     </>
   );
 };

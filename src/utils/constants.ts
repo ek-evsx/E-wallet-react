@@ -19,6 +19,12 @@ export enum BUTTON_TYPE {
 export enum ROUTES {
   login = '/login',
   dashboard = '/dashboard',
+  myProfile = '/my-profile',
+  videos = '/videos',
+  music = '/music',
+  messages = '/messages',
+  wallets = '/wallets',
+  transactions = '/transactions',
 };
 
 export const DATE_FORMAT = 'DD-MM-YYYY';

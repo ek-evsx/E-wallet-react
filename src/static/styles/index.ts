@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --gray-font: gray;
+    --gray: #727272;
     --dark-gray: #555555;
     --light-gray: #bfbfbf;
 
@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-size: 14px;
     background-color: var(--base-background);
-    color: var(--gray-font);
+    color: var(--gray);
     margin: 0;
     font-family: Arial;
   }

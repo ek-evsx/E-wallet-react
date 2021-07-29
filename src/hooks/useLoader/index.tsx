@@ -11,11 +11,13 @@ interface IProps {
 const useLoader = (props: IProps) => {
   const { isLoading, ...loaderProps } = props;
 
-  const [shouldShowLoader, setShouldShowLoader] = useState(true);
+  const [shouldShowLoader, setShouldShowLoader] = useState(isLoading);
 
   useEffect(() => {
     if (!isLoading) {
       setTimeout(() => setShouldShowLoader(false), 1000);
+    } else {
+      setShouldShowLoader(isLoading);
     }
   }, [isLoading]);
 

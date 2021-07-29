@@ -6,5 +6,6 @@ export const ChildContainer = styled.div`
 
 export const ComponentContainer = styled.div`
   margin-top: 7vh;
+  flex: 3;
 `;
 

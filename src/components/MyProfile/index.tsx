@@ -1,17 +1,16 @@
 import React from 'react';
 import moment from 'moment';
-import { gql, useQuery } from '@apollo/client';
-import { toast } from 'react-toast'
 
 import DefaultAvatar from 'static/images/default-avatar.jpeg';
 
 import Button from 'components/UI/Button';
+import DashboardItemRefetchButton from 'components/DashboardItemRefetchButton';
 
 import useLoader from 'hooks/useLoader';
 
 import { BUTTON_COLOR, DATE_FORMAT } from 'utils/constants';
-import { getParsedJWT } from 'utils/token';
 
+import { IProfile } from './types';
 import { 
   Card, 
   ProfileName, 
@@ -24,49 +23,28 @@ import {
   ProfileInfoFieldValue,
 } from './styles';
 
-interface IProfile {
-  fullName: string;
-  avatarUrl: string;
-  email: string;
-  [key: string]: string | number;
-};
-
-interface IQueryData {
-  user: IProfile;
-};
-
-const ALLOWED_USER_FIELDS = ['fullName', 'birthDate', 'city', 'email'];
+const ALLOWED_USER_FIELDS = ['birthDate', 'city', 'email'];
 const USER_FIELDS_LABELS: {
   [key: string]: string;
 } = {
-  fullName: 'Full Name',
   birthDate: 'Birth Date',
   city: 'City',
   email: 'E-mail',
 };
 
-const GET_ME = gql`
-query($id: String!) {
-  user(id: $id) {
-    id
-    fullName
-    city
-    email
-    birthDate
-  }
-}
-`;
+interface IProps {
+  data: IProfile | undefined;
+  isLoading: boolean;
+  onRefetch: () => void;
+  isRefetching: boolean;
+};
 
-const MyProfileCard = () => {
-  const parsedToken = getParsedJWT();
+const MyProfileCard = (props: IProps) => {
+  const { data, isLoading } = props;
 
-  const { data, loading } = useQuery<IQueryData>(GET_ME, {
-    variables: { id: parsedToken?.userId || '' },
-    onError:  (error) => toast.error(`Error! Message: ${error}`),
-  });
-  const profileInfo = data?.user && ALLOWED_USER_FIELDS.map(field => ({
+  const profileInfo = props.data && ALLOWED_USER_FIELDS.map(field => ({
     label: USER_FIELDS_LABELS[field],
-    value: data?.user[field],
+    value: props.data?.[field],
   }))
 
   const ProfileInfoComponents = profileInfo?.map(profileInfoField => {
@@ -84,17 +62,18 @@ const MyProfileCard = () => {
     );
   });
 
-  const { Loader, shouldShowLoader } = useLoader({ isLoading: loading, isFullScreen: false, size: 75 });
+  const { Loader, shouldShowLoader } = useLoader({ isLoading, isFullScreen: false, size: 75 });
 
-  const onNavigateProfile = () => console.log('fullName', data?.user?.fullName);
+  const onNavigateProfile = () => console.log('fullName', data?.fullName);
 
   return (
     <Card>
+      <DashboardItemRefetchButton onClick={props.onRefetch} isRefetching={props.isRefetching} />
       <AvatarContainer>
-        <Avatar src={data?.user?.avatarUrl || DefaultAvatar} />
+        <Avatar src={data?.avatarUrl || DefaultAvatar} />
       </AvatarContainer>
 
-      <ProfileName>{(!shouldShowLoader && data?.user?.fullName) || 'User Name'}</ProfileName>
+      <ProfileName>{(!shouldShowLoader && data?.fullName) || 'User Name'}</ProfileName>
 
       <ProfileInfoContainer>
         {

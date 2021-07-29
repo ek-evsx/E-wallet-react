@@ -9,6 +9,7 @@ export const Card = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 export const ProfileName = styled.h1`
@@ -38,8 +39,9 @@ export const Avatar = styled.img`
 
 export const ProfileInfoContainer = styled.div`
   width: 100%;
-  min-height: 50px;
+  min-height: 100px;
   margin: 10px 0;
+  position: relative;
 `;
 
 export const ProfileInfoField = styled.p`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { LoaderContainer, LoaderSizeContainer } from './styles';
 import './styles.css';
@@ -13,29 +13,17 @@ interface ILoaderProps {
   size?: number;
 };
 
-const Loader = (props: ILoaderProps) => (
-  <LoaderSizeContainer size={props.size}>
-    <div className="loadingio-spinner-ripple-164wyi4d59z">
-    <div className="ldio-sqy8nhht2f">
-      <div></div>
-      <div></div>
-    </div>
+const Loader = ({ size = 200 }: ILoaderProps) => (
+  <LoaderSizeContainer size={size}>
+    <div className="loadingio-spinner-rolling-mz3ix71ams9">
+      <div className="ldio-zst66qr2z9c">
+        <div style={{ border: `${Math.round(size / 10)}px solid #74007a`, borderTopColor: 'transparent' }}></div>
+      </div>
     </div>
   </LoaderSizeContainer>
 );
 
 const AppLoader = (props: IProps) => {
-  const [shouldMount, setShoulMount] = useState(true);
-  useEffect(() => {
-    if (!props.loading) {
-      setTimeout(() => setShoulMount(false), 1000);
-    }
-  }, [props.loading]);
-
-  if (!shouldMount) {
-    return null;
-  }
-
   if (!props.isFullScreen) {
     return <Loader size={props.size} />;
   }

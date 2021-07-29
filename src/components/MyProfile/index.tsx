@@ -1,9 +1,16 @@
 import React from 'react';
 import moment from 'moment';
+import { gql, useQuery } from '@apollo/client';
+import { toast } from 'react-toast'
 
 import DefaultAvatar from 'static/images/default-avatar.jpeg';
+
 import Button from 'components/UI/Button';
+
+import useLoader from 'hooks/useLoader';
+
 import { BUTTON_COLOR, DATE_FORMAT } from 'utils/constants';
+import { getParsedJWT } from 'utils/token';
 
 import { 
   Card, 
@@ -24,8 +31,8 @@ interface IProfile {
   [key: string]: string | number;
 };
 
-interface IProps {
-  data: IProfile;
+interface IQueryData {
+  user: IProfile;
 };
 
 const ALLOWED_USER_FIELDS = ['fullName', 'birthDate', 'city', 'email'];
@@ -38,11 +45,28 @@ const USER_FIELDS_LABELS: {
   email: 'E-mail',
 };
 
-const MyProfileCard = (props: IProps) => {
-  const { data: user } = props;
-  const profileInfo = user && ALLOWED_USER_FIELDS.map(field => ({
+const GET_ME = gql`
+query($id: String!) {
+  user(id: $id) {
+    id
+    fullName
+    city
+    email
+    birthDate
+  }
+}
+`;
+
+const MyProfileCard = () => {
+  const parsedToken = getParsedJWT();
+
+  const { data, loading } = useQuery<IQueryData>(GET_ME, {
+    variables: { id: parsedToken?.userId || '' },
+    onError:  (error) => toast.error(`Error! Message: ${error}`),
+  });
+  const profileInfo = data?.user && ALLOWED_USER_FIELDS.map(field => ({
     label: USER_FIELDS_LABELS[field],
-    value: user[field],
+    value: data?.user[field],
   }))
 
   const ProfileInfoComponents = profileInfo?.map(profileInfoField => {
@@ -60,18 +84,24 @@ const MyProfileCard = (props: IProps) => {
     );
   });
 
-  const onNavigateProfile = () => console.log('fullName', user.fullName);
+  const { Loader, shouldShowLoader } = useLoader({ isLoading: loading, isFullScreen: false, size: 75 });
+
+  const onNavigateProfile = () => console.log('fullName', data?.user?.fullName);
 
   return (
     <Card>
       <AvatarContainer>
-        <Avatar src={user?.avatarUrl || DefaultAvatar} />
+        <Avatar src={data?.user?.avatarUrl || DefaultAvatar} />
       </AvatarContainer>
 
-      <ProfileName>{user?.fullName}</ProfileName>
-      
+      <ProfileName>{(!shouldShowLoader && data?.user?.fullName) || 'User Name'}</ProfileName>
+
       <ProfileInfoContainer>
-        {ProfileInfoComponents}
+        {
+          shouldShowLoader ? 
+            Loader :  
+            ProfileInfoComponents
+        }
       </ProfileInfoContainer>
 
       <ViewProfileContainer>

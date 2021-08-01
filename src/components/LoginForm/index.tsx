@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { gql, useMutation } from '@apollo/client';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { toast } from 'react-toast'
 
 import Button from 'components/UI/Button';
 import { BUTTON_SIZE, BUTTON_COLOR, BUTTON_TYPE, ROUTES } from 'utils/constants';
 import { saveTokenData, isTokenExpired } from 'utils/token';
 
-import { Input, ErrorMessage, Form, ButtonContainer } from './styles';
+import { Input, ErrorMessage, Form, ButtonContainer, LinksContainer } from './styles';
 
 const LOGIN = gql`
 mutation login($login: String!, $password: String!) {
@@ -55,6 +55,10 @@ const LoginForm = () => {
           text={'Login!'}
         />
       </ButtonContainer>
+      <LinksContainer>
+        <Link to={ROUTES.signUp}>Sign up</Link>
+        <Link to={ROUTES.resetPassword}>Forgot password?</Link>
+      </LinksContainer>
     </Form>
   );
 };

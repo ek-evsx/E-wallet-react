@@ -11,11 +11,16 @@ import LoginPage from 'components/pages/Login';
 import Dashboard from 'components/pages/Dashboard';
 import NotFoundPage from 'components/pages/NotFound';
 import PrivateRoute from 'components/PrivateRoute';
+import ResetPassword from 'components/pages/ResetPassword';
 
 const publicRoutes = [
   {
     path: ROUTES.login,
     component: LoginPage,
+  },
+  {
+    path: ROUTES.resetPassword,
+    component: ResetPassword,
   },
 ];
 

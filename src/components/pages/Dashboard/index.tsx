@@ -16,7 +16,7 @@ import { ReactComponent as RefreshIcon } from 'static/images/icons/refresh.svg';
 import { DashboardContainer, RefreshButtonText, RefreshButtonContent, RefreshButtonContainer } from './styles';
 
 const GET_ME = gql`
-query($id: String!) {
+query getMe($id: String!) {
   user(id: $id) {
     id
     fullName

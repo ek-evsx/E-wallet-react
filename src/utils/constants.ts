@@ -25,6 +25,8 @@ export enum ROUTES {
   messages = '/messages',
   wallets = '/wallets',
   transactions = '/transactions',
+  signUp = '/sign-up',
+  resetPassword = '/reset-password',
 };
 
 export const DATE_FORMAT = 'DD-MM-YYYY';

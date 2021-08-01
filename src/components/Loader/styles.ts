@@ -9,7 +9,7 @@ export const LoaderContainer = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background-color: var(--light-gray);
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 export const LoaderSizeContainer = styled.div<{

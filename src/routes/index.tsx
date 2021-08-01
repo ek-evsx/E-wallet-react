@@ -12,6 +12,7 @@ import Dashboard from 'components/pages/Dashboard';
 import NotFoundPage from 'components/pages/NotFound';
 import PrivateRoute from 'components/PrivateRoute';
 import ResetPassword from 'components/pages/ResetPassword';
+import SignUp from 'components/pages/SignUp';
 
 const publicRoutes = [
   {
@@ -21,6 +22,10 @@ const publicRoutes = [
   {
     path: ROUTES.resetPassword,
     component: ResetPassword,
+  },
+  {
+    path: ROUTES.signUp,
+    component: SignUp,
   },
 ];
 

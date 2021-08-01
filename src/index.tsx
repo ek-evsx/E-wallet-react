@@ -17,6 +17,8 @@ import { getParsedTokenData } from 'utils/token';
 import App from 'components/App';
 import { GlobalStyle } from 'static/styles';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 const httpLink = createHttpLink({
   uri: config.apiHost.getGQLApiUrl(),
 });

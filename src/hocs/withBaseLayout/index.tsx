@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from 'components/Header';
-import Sidebar from 'components/Sidebar';
+import Footer from 'components/Footer';
 
 import { ComponentContainer, ChildContainer } from './styles';
 
@@ -10,11 +10,11 @@ const withBaseLayout = <P extends object>(Component: React.ComponentType<P>) => 
     <>
       <Header />
       <ChildContainer>
-        <Sidebar />
         <ComponentContainer>
           <Component {...props} />
         </ComponentContainer>
       </ChildContainer>
+      <Footer />
     </>
   );
 };

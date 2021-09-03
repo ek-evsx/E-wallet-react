@@ -34,6 +34,18 @@ const privateRoutes = [
     path: ROUTES.dashboard,
     component: Dashboard,
   },
+  {
+    path: ROUTES.myProfile,
+    component: Dashboard,
+  },
+  {
+    path: ROUTES.messages,
+    component: Dashboard,
+  },
+  {
+    path: ROUTES.wallets,
+    component: Dashboard,
+  },
 ];
 
 export const AppRouter = () => {

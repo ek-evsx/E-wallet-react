@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Footer = styled.footer`
   width: 100vw;
-  height: 5vh;
+  height: 7vh;
 
   display: flex;
   justify-content: flex-end;
@@ -13,17 +13,8 @@ export const Footer = styled.footer`
   z-index: 999;
 `;
 
-export const Copyright = styled.p`
-  color: var(--dark-gray);
-  padding: 0 10px;
-  align-self: center;
-
-  ::before {
-    content: '©';
-    margin-right: 5px;
-  }
-`;
-
-export const CopyrightLink = styled.a`
-  color: var(--dark-gray);
+export const MenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;

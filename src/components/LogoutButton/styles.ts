@@ -4,8 +4,8 @@ export const Button = styled.button`
   text-decoration: underline;
   font-size: 1.2em;
 
-  color: var(--gray);
-  background-color: var(--white);
+  color: var(--white);
+  background-color: transparent;
 
   outline: none;
   border: none;
@@ -13,7 +13,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    color: var(--dark-gray);
+    color: var(--lighter-gray);
   }
 
   :active {

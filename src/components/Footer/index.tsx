@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { Footer, Copyright, CopyrightLink } from './styles';
+import AppMenu from 'components/Menu';
+
+import { Footer, MenuContainer } from './styles';
 
 const AppFooter = () => {
   return (
     <Footer>
-      <Copyright>Copyright by{' '}
-        <CopyrightLink href={'https://evsx.com'} target={'_blank'}>EVSX inc.</CopyrightLink>
-      </Copyright>
+      <MenuContainer>
+        <AppMenu />
+      </MenuContainer>
     </Footer>
   );
 };

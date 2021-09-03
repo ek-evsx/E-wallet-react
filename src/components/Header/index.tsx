@@ -1,14 +1,23 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import LogoutButton from 'components/LogoutButton';
 
-import { Header, LogoutButtonContainer, SidebarButtonContainer } from './styles';
+import { ReactComponent as Logo } from 'static/images/logo_transp.svg';
+import { ROUTES } from 'utils/constants';
+
+import { Header, LogoutButtonContainer, LogoContainer } from './styles';
 
 const AppHeader = () => {
+  const history = useHistory();
+
+  const onLogoClick = () => history.push(ROUTES.dashboard);
+
   return (
     <Header>
-      <SidebarButtonContainer>
-      </SidebarButtonContainer>
+      <LogoContainer onClick={onLogoClick}>
+        <Logo />
+      </LogoContainer>
       <LogoutButtonContainer>
         <LogoutButton />
       </LogoutButtonContainer>

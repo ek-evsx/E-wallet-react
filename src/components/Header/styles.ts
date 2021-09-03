@@ -7,7 +7,7 @@ export const Header = styled.header`
   top: 0;
   
   display: flex;
-  background-color: var(--white);
+  background-color: var(--purple);
 `;
 
 export const LogoutButtonContainer = styled.div`
@@ -24,4 +24,15 @@ export const SidebarButtonContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 10px 20px;
+`;
+
+export const LogoContainer = styled.div`
+  width: 105px;
+  height: 7vh;
+
+  > svg {
+    fill: var(--white);
+    height: inherit;
+    width: inherit;
+  }
 `;

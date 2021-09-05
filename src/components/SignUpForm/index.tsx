@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Button from 'components/UI/Button';
 import { IFormData, ISignUpData } from 'components/pages/SignUp/types';
+import AvatarUpload from 'components/AvatarUpload';
 
 import { BUTTON_SIZE, BUTTON_COLOR, BUTTON_TYPE, ROUTES } from 'utils/constants';
 
@@ -22,18 +23,27 @@ interface IProps {
 };
 
 const SignUpForm = (props: IProps) => {
-  const { register, control, handleSubmit, formState: { errors } } = useForm();
+  const { register, setValue, control, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data: IFormData) => {
     const { verifyPassword, ...signupData } = data;
 
     if (signupData.password === verifyPassword) {
-      props.onSubmit(signupData);
+      props.onSubmit({
+        ...signupData,
+        avatar: signupData.avatar ? signupData.avatar[0] : null,
+      });
     }
+
   };
   
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <AvatarUpload 
+        setValue={setValue}
+        register={register("avatar")}
+      />
+
       <Input  {...register("firstName", { required: true })} placeholder={'Enter first name...'} error={errors.firstName} />
       {errors.firstName && <ErrorMessage>This field is required</ErrorMessage>}
 

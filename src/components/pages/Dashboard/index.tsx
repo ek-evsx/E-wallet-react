@@ -23,6 +23,7 @@ query getMe($id: String!) {
     city
     email
     birthDate
+    avatarUrl
   }
 }
 `;

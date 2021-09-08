@@ -6,8 +6,10 @@ export interface ISignUpData {
   birthDate: Date;
   password: string;
   login: string;
+  avatar: Blob | null;
 };
 
-export interface IFormData extends ISignUpData {
+export interface IFormData extends Omit<ISignUpData, 'avatar'> {
   verifyPassword: string;
+  avatar: Array<Blob> | null;
 };

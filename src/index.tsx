@@ -10,6 +10,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/link-error';
 import { ToastContainer } from 'react-toast'
+import { createUploadLink } from 'apollo-upload-client';
 
 import config from 'config';
 import { getParsedTokenData } from 'utils/token';
@@ -20,6 +21,10 @@ import { GlobalStyle } from 'static/styles';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const httpLink = createHttpLink({
+  uri: config.apiHost.getGQLApiUrl(),
+});
+
+const uploadLink = createUploadLink({ 
   uri: config.apiHost.getGQLApiUrl(),
 });
 
@@ -52,6 +57,7 @@ const client = new ApolloClient({
   link: ApolloLink.from([
     errorLink,
     authLink,
+    uploadLink,
     httpLink,
 ]),
   cache: new InMemoryCache()

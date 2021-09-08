@@ -55,7 +55,6 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 20px;
 `;
 
 export const ButtonContainer = styled.div`

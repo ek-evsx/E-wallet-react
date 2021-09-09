@@ -13,12 +13,11 @@ const LogoutButton = () => {
   const onClick = (client: ApolloClient<object>) => async () => {
     try {
       await client?.resetStore();
-
-      return history.push(ROUTES.login);
     } catch (e) {
       console.log(e);
     } finally {
       clearTokenData();
+      history.push(ROUTES.login);
     }
   };
 
